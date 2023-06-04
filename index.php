@@ -14,7 +14,7 @@
      	<input type="text" name="uname" placeholder="User Name"><br>
 
      	<label>Password</label>
-     	<input type="password" name="password" placeholder="Passwords"><br>
+     	<input type="password" name="password" placeholder="Password"><br>
 
      	<button type="submit">Login</button>
           <a href="signup.php" class="ca">Create an account</a>
