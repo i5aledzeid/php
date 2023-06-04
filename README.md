@@ -2,8 +2,8 @@
 
 version: 1.0.0
 
-###UserName : elias
-###Password : 123
+###UserName : admin
+###Password : admin
 
 ## Full Tutorial
 
