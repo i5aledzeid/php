@@ -7,8 +7,8 @@ version: 1.0.0
 
 ## Full Tutorial
 
-[On Youtube](https://www.youtube.com/watch?v=peSg10WxYLI)
+[Youtube Channel](https://www.youtube.com/watch?v=peSg10WxYLI)
 
 ## Authors
 
-[Elias Abdurrahman](https://github.com/i5aledzeid)
+[Khaled Zeid](https://github.com/i5aledzeid)
