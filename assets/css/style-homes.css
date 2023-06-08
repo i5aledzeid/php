@@ -55,6 +55,44 @@
     width: 100%;
 }
 
+/* SUB MENU */
+
+.sub-menu {
+    display: none;
+}
+
+.navbar ul li:hover .sub-menu {
+    display: block;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.4);
+    font-size: 12px;
+    margin-top: 6px;
+    margin-bottom: 4px;
+    margin-left: -68px;
+}
+
+.navbar ul li:hover .sub-menu ul {
+    display: block;
+}
+
+.navbar ul li:hover .sub-menu ul li {
+    width: 64px;
+    background: transparent;
+    text-align: right;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.navbar ul li:hover .sub-menu ul li:last-child {
+    border-bottom: none;
+}
+
+.navbar ul li:hover .sub-menu ul li a:hover {
+    color: #009688;
+}
+
+/* SUB MENU */
+
 .content {
     width: 100%;
     position: absolute;

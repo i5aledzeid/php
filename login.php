@@ -44,6 +44,9 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 				if ($row['role'] == 2) {
 					header("Location: home.php");
 				}
+				if ($row['role'] == 3) {
+					header("Location: home.php");
+				}
 				//////////////// ROLE ///////////////
             	// header("Location: home.php");
 		        // exit();

@@ -32,7 +32,20 @@
     <style>
         * {
             direction: rtl;
+            font-size: 10px;
         }
+        
+        .table .date {
+            padding-right: 30px;
+            padding-left: 30px;
+            background: red;
+        }
+        
+        .table .car-number {
+            padding-right: 30px;
+            padding-left: 30px;
+        }
+        
     </style>
   </head>
   <body>
@@ -45,17 +58,19 @@
         <a href="add_exchange_drivers.php" class="btn btn-dark mb-3">إضافة فاتورة</a>
         <!--<a href="report_exchange_drivers.php" class="btn btn-dark mb-3">عرض تقارير</a>-->
         <a href="works.php" class="btn btn-dark mb-3">عرض تقارير</a>
+        <!--<a href="search.php" class="btn btn-dark mb-3">البحث</a>-->
+        <a href="../../layouts/search_engine/search_engine.php" class="btn btn-dark mb-3">محرك البحث (جديد*)</a>
         <table class="table table-hover text-center">
             <thead class="table-dark">
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col-6">رقم السيارة</th>
+                    <th scope="col" class="car-number">رقم السيارة</th>
                     <th scope="col">المصنع</th>
                     <th scope="col">صاحب السيارة</th>
                     <th scope="col">إسم السائق</th>
                     <th scope="col">الترب</th>
                     <th scope="col">قيمة الترب</th>
-                    <th scope="col">اإجمالي الترب</th>
+                    <th scope="col">إجمالي الترب</th>
                     <th scope="col">ديزل</th>
                     <th scope="col">نوع الخدمة</th>
                     <th scope="col">قيمة الخدمة</th>
@@ -63,6 +78,7 @@
                     <th scope="col">سعر الحمولة</th>
                     <th scope="col">إجمالي الحمولة</th>
                     <th scope="col">الخصومات</th>
+                    <th scope="col" class="date">التاريخ</th>
                     <!--<th scope="col">Payments</th>
                     <th scope="col">Date</th>
                     <th scope="col">Month</th>
@@ -70,20 +86,25 @@
                     <th scope="col">Salary</th>
                     <th scope="col">Net Salary</th>-->
                     <!-- //////////////// ROLE /////////////// -->
-                            <?php
-                            if ($_SESSION['role'] == 1) {
-                                echo '
-                                    <th scope="col" style="width: 10%;">العمليات</th>
-                                ';
-                            }
-                            else if ($_SESSION['role'] == 2) {
-                                echo '
-                                    <th>
-                                    </th>
-                                ';
-                            }
-                            ?>
-                            <!-- //////////////// ROLE /////////////// -->
+                        <?php
+                        if ($_SESSION['role'] == 1) {
+                            echo '
+                                <th scope="col" style="width: 8%;">العمليات</th>
+                            ';
+                        }
+                        else if ($_SESSION['role'] == 3) {
+                            echo '
+                                <th scope="col" style="width: 8%;">العمليات</th>
+                            ';
+                        }
+                        else if ($_SESSION['role'] == 2) {
+                            echo '
+                                <th>
+                                </th>
+                            ';
+                        }
+                        ?>
+                    <!-- //////////////// ROLE /////////////// -->
                     
                 </tr>
             </thead>
@@ -109,16 +130,24 @@
                             <td><?php echo $row['payload_price']; ?></td>
                             <td><?php echo $row['payload_total']; ?></td>
                             <td><?php echo $row['discounts']; ?></td>
+                            <td><?php echo $row['date']; ?></td>
                             <!-- //////////////// ROLE /////////////// -->
                             <?php
-                            if ($_SESSION['role'] == 1) {
-                                echo '
-                                    <td>
-                                        <a href="#" class="link-dark"><i class="fa-solid fa-pen-to-square fs-5 me-3"></i></a>
-                                        <a href="#" class="link-dark"><i class="fa-solid fa-trash fs-5"></i></a>
-                                    </td>
-                                ';
-                            }
+                            if ($_SESSION['role'] == 1) { ?>
+                                
+                                <td>
+                                    <a href="edit_exchange_drivers.php?id=<?php echo $row['id']?>" class="link-dark"><i class="fa-solid fa-pen-to-square fs-5 me-3"></i></a>
+                                </td>
+                                
+                            <?php }
+                            else if ($_SESSION['role'] == 3) { ?>
+                            
+                                <td>
+                                    <a href="edit_exchange_drivers.php?id=<?php echo $row['id']?>" class="link-dark"><i class="fa-solid fa-pen-to-square fs-5 me-3"></i></a>
+                                    <a href="delete_exchange_drivers.php?id=<?php echo $row['id']?>" class="link-dark"><i class="fa-solid fa-trash fs-5"></i></a>
+                                </td>
+                                
+                            <?php }
                             else if ($_SESSION['role'] == 2) {
                                 echo '
                                     <td>

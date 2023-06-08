@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jun 05, 2023 at 01:39 AM
+-- Host: localhost:3306
+-- Generation Time: Jun 08, 2023 at 03:33 PM
 -- Server version: 10.5.20-MariaDB
 -- PHP Version: 7.3.33
 
@@ -32,17 +32,20 @@ CREATE TABLE `user` (
   `user_name` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `role` int(11) NOT NULL
+  `image` varchar(255) DEFAULT NULL,
+  `role` int(11) NOT NULL,
+  `role_image` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `user_name`, `password`, `name`, `role`) VALUES
-(1, 'i5aledzeid', 'd5667a206565cf65d49dd3dfc4c2118c', 'Khaled Zeid', 1),
-(2, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'محمد مفيد', 1),
-(3, 'mkh', 'e10adc3949ba59abbe56e057f20f883e', 'ماجد خالد الحماد', 2);
+INSERT INTO `user` (`id`, `user_name`, `password`, `name`, `image`, `role`, `role_image`) VALUES
+(1, 'i5aledzeid', 'd5667a206565cf65d49dd3dfc4c2118c', 'خالد زيد', '../assets/images/favicon6.ico', 3, '../assets/images/verified_label_badge_checkmark_logo_icon.png'),
+(2, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'محمد مفيد', '../assets/images/profile-images/mofeed_image.png', 1, '../assets/images/store_verified_shopping_ecommerce_cart_icon.png'),
+(3, 'mkh', 'e10adc3949ba59abbe56e057f20f883e', 'ماجد خالد الحماد', '../assets/images/profile/avatar_man_muslim_icon.png', 2, '../assets/images/verified_icon.png'),
+(5, 'user', 'e10adc3949ba59abbe56e057f20f883e', 'مستخدم', '../assets/images/profile/avatar_male_man_portrait_icon.png', 2, '../assets/images/user_male_icon.png');
 
 --
 -- Indexes for dumped tables
@@ -62,7 +65,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
