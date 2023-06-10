@@ -158,7 +158,7 @@ include "../db_conn.php";
                                                     echo '
                                                         <tr>
                                                             <td>' . $row['id'] . '</td>
-                                                            <td>' . $row['name'] . '</td>
+                                                            <td>' . $row['name'] . ' ' . $row['middle'] . ' ' . $row['last'] . '</td>
                                                             <td>' . $row['user_name'] . '</td>'?>
                                                             <td>
                                                                 <?php if ($row['role'] == '3') {

@@ -64,23 +64,53 @@ include "../db_conn.php";
                                         foreach ($query_run as $user) { ?>
                                             <form action="update_user.php" method="POST">
                                                 <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
-                                                <div class="col-md-6 mb-3">
-                                                    <label for="name">الإسم</label>
-                                                    <input type="text" name="name" value="<?php echo $user['name']; ?>" class="form-control"><br>
-                                                    <label for="user_name">إسم المستخدم</label>
-                                                    <input type="text" name="user_name" value="<?php echo $user['user_name']; ?>" class="form-control">
-                                                </div>
-                                                <div class="col-md-6 mb-3">
-                                                    <label for="role">الصلاحية</label>
-                                                    <select name="role" required class="form-control">
-                                                        <option value="">--إختر الصلاحية--</option>
-                                                        <option value="1" <?php echo $user['role'] == '1' ? 'selected':''; ?>>المسؤول</option>
-                                                        <option value="2" <?php echo $user['role'] == '2' ? 'selected':''; ?>>المستخدم</option>
-                                                        <option value="3" <?php echo $user['role'] == '3' ? 'selected':''; ?>>المالك</option>
-                                                        </select><br>
-                                                    <label for="password">كلمة المرور</label>
-                                                    <input type="text" name="password" value="<?php echo $user['password']; ?>" class="form-control">
-                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <label for="name">الإسم الأول</label>
+                                                                <input type="text" name="name" value="<?php echo $user['name']; ?>" class="form-control">
+                                                            </div>
+                                                            <div class="col">
+                                                                <label for="middle">الإسم الأوسط</label>
+                                                                <input type="text" name="middle" value="<?php echo $user['middle']; ?>" class="form-control">
+                                                            </div>
+                                                            <div class="col">
+                                                                <label for="last">الإسم الأخير</label>
+                                                                <input type="text" name="last" value="<?php echo $user['last']; ?>" class="form-control">
+                                                            </div>
+                                                        </div><br>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <label for="user_name">إسم المستخدم</label>
+                                                                <input type="text" name="user_name" value="<?php echo $user['user_name']; ?>" class="form-control">
+                                                            </div>
+                                                            <div class="col">
+                                                                <label for="role">الصلاحية</label>
+                                                                <select name="role" required class="form-control">
+                                                                    <option value="">--إختر الصلاحية--</option>
+                                                                    <option value="1" <?php echo $user['role'] == '1' ? 'selected':''; ?>>المسؤول</option>
+                                                                    <option value="2" <?php echo $user['role'] == '2' ? 'selected':''; ?>>المستخدم</option>
+                                                                    <option value="3" <?php echo $user['role'] == '3' ? 'selected':''; ?>>المالك</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col">
+                                                                <label for="password">كلمة المرور</label>
+                                                                <input type="text" name="password" value="<?php echo $user['password']; ?>" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <!--<div class="col-md-6 mb-3"></div>-->
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <img src="<?php echo $user['image']; ?>" alt="image" style="width: 128px;">
+                                                    </div>
+                                                </div><br>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <label for="image">رابط الصورة</label>
+                                                        <input style="direction: ltr; text-align: left; background-color: #D1E7DD;" type="text" name="image" value="<?php echo $user['image']; ?>" class="form-control">
+                                                    </div>
+                                                </div><br>
                                                 <div class="col-md-12 mb-3">
                                                     <button type="submit" name="update_user" class="btn btn-primary">تحديث</button>
                                                 </div>
