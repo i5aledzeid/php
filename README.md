@@ -3,7 +3,7 @@
 version: 1.0.0
 
 ###UserName : **user**
-###Password : **user**
+###Password : **123456**
 
 ## Try Demo Now
 
