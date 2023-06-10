@@ -9,7 +9,7 @@ version: 1.0.0
 
 [Demo](https://mkh888.000webhostapp.com/)
 
-![Screenshot of a comment on a GitHub issue showing an image, added in the Markdown, of an Octocat smiling and raising a tentacle.](https://myoctocat.com/assets/images/base-octocat.svg)
+![Screenshot of a comment on a GitHub issue showing an image, added in the Markdown, of an Octocat smiling and raising a tentacle.](https://raw.githubusercontent.com/i5aledzeid/php/master/assets/images/screenshots/screenshots.png)
 
 ## Full Tutorial
 
