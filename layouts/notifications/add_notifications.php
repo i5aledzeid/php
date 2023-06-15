@@ -1,13 +1,23 @@
 <?php
     include "../../db_conn.php";
     session_start();
+    
+    $sql = "SELECT * FROM `user`";
+    if ($result=mysqli_query($conn, $sql)) {
+        $user = mysqli_num_rows($result);
+        // echo $user;
+    }
+    
     if (isset($_POST['notification'])) {
         $title = $_POST['title'];
         $subtitle = $_POST['subtitle'];
         $date = date('y-m-d h:m:s');
         $type = $_POST['type'];
         $name = $_SESSION['name'];
-        $sql = mysqli_query($conn, "INSERT INTO notifications(title, subtitle, date, type, created_by) VALUES('$title', '$subtitle', '$date', '$type', '$name')");
+        
+        for ($i = 1; $i <= $user; $i++) {
+            $sql = mysqli_query($conn, "INSERT INTO notifications(title, subtitle, date, type, created_by, seen) VALUES('$title', '$subtitle', '$date', '$type', '$name', '$i')");
+        }
         if ($sql) {
             echo '
                 <script>alert("Success!");</script>
@@ -18,6 +28,9 @@
             exit;
         }
     }
+    
+    // $exe = mysqli_query($conn, $sql);
+    // header("Location: noti_array.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">

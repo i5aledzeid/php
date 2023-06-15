@@ -19,6 +19,17 @@ include "../db_conn.php";
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script type="module">
+      import {
+        Draggable,
+        Point2DSpring,
+        Tossable,
+        combineStyleStreams,
+        getPointerEventStreamsFromElement,
+      } from "https://ajax.googleapis.com/ajax/libs/material-motion/0.1.0/material-motion.bundle.js";
+    </script>
     <link rel="icon" type="image/x-icon" href="../assets/icons/admin_google_security_settings_icon.ico">
 	<title>Admin Panel</title>
 </head>
@@ -146,6 +157,7 @@ include "../db_conn.php";
                                             <th>الإسم</th>
                                             <th>إسم المستخدم</th>
                                             <th>الصلاحية</th>
+                                            <th>الحالة</th>
                                             <th>العمليات</th>
                                         </tr>
                                     </thead>
@@ -153,6 +165,9 @@ include "../db_conn.php";
                                         <?php
                                             $query = "SELECT * FROM user";
                                             $query_run = mysqli_query($conn, $query);
+                                            echo $time = time();
+                                            $status = 'offline';
+                                            $class = "btn-danger";
                                             if (mysqli_num_rows($query_run) > 0) {
                                                 foreach ($query_run as $row) {
                                                     echo '
@@ -172,6 +187,26 @@ include "../db_conn.php";
                                                                     }
                                                                 ?>
                                                             </td>
+                                                            <?php
+                                                                if ($row['last_login'] > $time) {
+                                                                    $status = 'online';
+                                                                    $class = "btn-success";
+                                                                    echo '
+                                                                    <td>
+                                                            <a href="#" class="btn '.$class.'" id="liveToastBtn">' . $status . '</a>
+                                                                    </td>
+                                                                    ';
+                                                                }
+                                                                else {
+                                                                    $status = 'offline';
+                                                                    $class = "btn-danger";
+                                                                    echo '
+                                                                    <td>
+                                                            <a href="#" class="btn '.$class.'" id="liveToastBtn">' . $status . '</a>
+                                                                    </td>
+                                                                    ';
+                                                                }
+                                                            ?>
                                                             <td>
                                                                 <a href="edit_admin_panel.php?id=<?php echo $row['id']; ?>" class="btn btn-success" id="liveToastBtn">تعديل</a>
                                                                 <button type="button" class="btn btn-danger">حذف</button>
@@ -218,6 +253,30 @@ include "../db_conn.php";
                 all_content[index].classList.add('active');
             });
         });
+    </script>
+    <script>
+        function updateUserStatus() {
+            jQuery.ajax({
+                url:'update_user_status.php',
+                success:function() {
+
+                }
+            });
+        }
+        function geteUserStatus() {
+            jQuery.ajax({
+                url:'get_user_status.php',
+                success:function(result) {
+                    // jQuery('#user_grid').html(result);
+                }
+            });
+        }
+        setInterval(function() {
+            updateUserStatus();
+        }, 2000);
+        setInterval(function() {
+            geteUserStatus();
+        }, 5000);
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
