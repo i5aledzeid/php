@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 13, 2023 at 11:24 AM
+-- Generation Time: Jun 15, 2023 at 05:04 AM
 -- Server version: 10.5.20-MariaDB
 -- PHP Version: 7.3.33
 
@@ -135,15 +135,20 @@ CREATE TABLE `notifications` (
   `status` int(11) NOT NULL DEFAULT 0,
   `type` int(11) NOT NULL,
   `created_by` varchar(255) NOT NULL,
-  `date` datetime NOT NULL
+  `date` datetime NOT NULL,
+  `seen` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `notifications`
 --
 
-INSERT INTO `notifications` (`id`, `title`, `subtitle`, `status`, `type`, `created_by`, `date`) VALUES
-(1, 'تنبيه', 'تم إضافة فاتورة جديدة', 0, 3, 'مفيد', '2023-06-12 03:06:43');
+INSERT INTO `notifications` (`id`, `title`, `subtitle`, `status`, `type`, `created_by`, `date`, `seen`) VALUES
+(1, 'تنبيه', 'تم إضافة فاتورة جديدة', 0, 3, 'مفيد', '2023-06-12 03:06:43', 1),
+(2, 'تنبيه!', 'كيف حالك؟', 0, 1, 'خالد', '2023-06-14 03:06:20', 1),
+(3, 'تنبيه!', 'كيف حالك؟', 0, 1, 'خالد', '2023-06-14 03:06:20', 2),
+(4, 'تنبيه!', 'كيف حالك؟', 0, 1, 'خالد', '2023-06-14 03:06:20', 3),
+(5, 'تنبيه!', 'كيف حالك؟', 0, 1, 'خالد', '2023-06-14 03:06:20', 4);
 
 -- --------------------------------------------------------
 
@@ -188,7 +193,8 @@ CREATE TABLE `qrcode` (
 --
 
 INSERT INTO `qrcode` (`id`, `qrtext`, `qrimage`) VALUES
-(1, 'https://mkh888.000webhostapp.com/layouts/workshop_invoices/view_workshop_invoice.php?id=2327184', '1686557922.png');
+(1, 'https://mkh888.000webhostapp.com/layouts/workshop_invoices/view_workshop_invoice.php?id=2327184', '1686557922.png'),
+(2, 'لبيالبايبا', '1686679628.png');
 
 -- --------------------------------------------------------
 
@@ -247,10 +253,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `user_name`, `password`, `name`, `middle`, `last`, `image`, `role`, `role_image`, `last_login`) VALUES
-(1, 'i5aledzeid', 'd5667a206565cf65d49dd3dfc4c2118c', 'خالد', 'محمد', 'زيد', 'https://raw.githubusercontent.com/i5aledzeid/php/master/assets/images/admin/i5aledzeid.jpg', 3, '../assets/images/verified_label_badge_checkmark_logo_icon.png', 1686502379),
+(1, 'i5aledzeid', 'd5667a206565cf65d49dd3dfc4c2118c', 'خالد', 'محمد', 'زيد', 'https://raw.githubusercontent.com/i5aledzeid/php/master/assets/images/admin/i5aledzeid.jpg', 3, '../assets/images/verified_label_badge_checkmark_logo_icon.png', 1686759086),
 (2, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'مفيد', '', 'زيد', '../assets/images/profile-images/mofeed_image.png', 1, '../assets/images/store_verified_shopping_ecommerce_cart_icon.png', 0),
 (3, 'mkh', 'e10adc3949ba59abbe56e057f20f883e', 'ماجد خالد الحماد', '', '', '../assets/images/profile/avatar_man_muslim_icon.png', 2, '../assets/images/verified_icon.png', 0),
-(5, 'user', 'e10adc3949ba59abbe56e057f20f883e', 'مستخدم', '', '', '../assets/images/profile/avatar_male_man_portrait_icon.png', 2, '../assets/images/user_male_icon.png', 1686504920);
+(4, 'user', 'e10adc3949ba59abbe56e057f20f883e', 'مستخدم', '', '', '../assets/images/profile/avatar_male_man_portrait_icon.png', 2, '../assets/images/user_male_icon.png', 1686765964);
 
 -- --------------------------------------------------------
 
@@ -300,6 +306,13 @@ CREATE TABLE `workshop` (
   `created_by` varchar(255) NOT NULL DEFAULT 'Khaled',
   `created_at` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `workshop`
+--
+
+INSERT INTO `workshop` (`invoice_number`, `workshop_title`, `workshop_subtitle`, `workshop_phone`, `workshop_location`, `title`, `subtitle`, `subtitle2`, `subtitle3`, `subtitle4`, `subtitle5`, `subtitle6`, `price`, `price2`, `price3`, `price4`, `price5`, `price6`, `qty`, `qty2`, `qty3`, `qty4`, `qty5`, `qty6`, `tax`, `total`, `total2`, `total3`, `total4`, `total5`, `total6`, `image`, `date`, `hijri_date`, `customer_name`, `status`, `qrtext`, `qrimage`, `created_by`, `created_at`) VALUES
+(1, 'ورشة الحماد', 'لصيانة سيارات الديزل', '0501222376', 'الرياض - السلي - صناعية الفوزان', 'فاتورة', 'بيان أول', NULL, NULL, NULL, NULL, NULL, 300.00, 0.00, 0.00, 0.00, 0.00, 0.00, 1, 0, 0, 0, 0, 0, 15, 300.00, 0.00, 0.00, 0.00, 0.00, 0.00, 'image', '2023-06-13', 'hijri_date', 'مان أصفر', 0, 'https://mkh888.000webhostapp.com/layouts/workshop_invoices/view_workshop_invoice.php?id=1', '1686659352.png', 'خالد زيد', '2023-06-13');
 
 --
 -- Indexes for dumped tables
@@ -361,7 +374,7 @@ ALTER TABLE `drivers`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `profits`
@@ -373,7 +386,7 @@ ALTER TABLE `profits`
 -- AUTO_INCREMENT for table `qrcode`
 --
 ALTER TABLE `qrcode`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `transporters`
